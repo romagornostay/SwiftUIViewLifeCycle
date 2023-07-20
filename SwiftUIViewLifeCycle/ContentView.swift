@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    let fruits = ["Grape", "Cherry", "Banana", "Apple", "Pineapple", "Orange"]
+    private let fruits = ["Grape", "Cherry", "Banana", "Apple", "Pineapple", "Orange"]
     
     @State private var shouldShowSlider = false
     @State private var size: CGFloat = 18.0
@@ -19,11 +19,11 @@ struct ContentView: View {
             VStack {
                 
                 Section {
-                    Toggle(isOn: $shouldShowSlider) {
+                    Toggle(isOn: $shouldShowSlider.animation(.easeInOut)) {
                         Text("Font resizing available")
                     }
                 }
-                .padding(.horizontal)
+                .padding(shouldShowSlider ? .horizontal : .all )
                 
                 if shouldShowSlider {
                     slider(name: "Font size", value: $size, in: 12...30)
